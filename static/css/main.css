@@ -1,0 +1,12 @@
+body{
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+.btn.btn-outline-dark.mt-5 {
+    width: 100%;
+}
+
+form {
+    text-align: center;
+}
