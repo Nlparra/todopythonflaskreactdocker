@@ -20,15 +20,15 @@
             <td class="align-middle text-center">{{ task.content }}</td>
             <td class="align-middle text-center">{{ task.date_created.date() }}</td>
             <td class="align-middle text-center">
-                <a href="/delete/{{task.id}}">Delete</a>
+                <a href="http://127.0.0.1:5000/delete/{{task.id}}">Delete</a>
                
-                <a href="/update/{{task.id}}">Update</a>
+                <a href="http://127.0.0.1:5000/update/{{task.id}}">Update</a>
             </td>
         </tr>
         {% endfor %}
 </table>
 {% endif %}
-<form  class="mt-5" action="/" method="POST">
+<form  class="mt-5" action="http://127.0.0.1:5000/" method="POST">
     <input type="text" name="content" id="content">
     <input class="btn btn-dark" type="submit" value="Add Task">
 </form>

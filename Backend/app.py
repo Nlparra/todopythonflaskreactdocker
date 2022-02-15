@@ -9,8 +9,6 @@ db = SQLAlchemy(app)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = "Content-Type"
 
-
-
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
@@ -36,7 +34,7 @@ def index():
         try:
             db.session.add(new_task)
             db.session.commit()
-            return redirect('/')
+            return redirect('http://localhost:3000/List')
         except:
             return 'there was an issue adding your task'
 
@@ -52,7 +50,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        return redirect('/')
+        return redirect('http://localhost:3000/List')
     except:
         return 'there was a problem deleting that task'
 
@@ -61,14 +59,13 @@ def update(id):
     task = Todo.query.get_or_404(id)
 
     if request.method == 'POST':
-        task.content = request.form['content']
-
-        try:
+       task.content = request.form['content']
+       try:
             db.session.commit()
-            return redirect('/')
-        except:
-            return 'there was an issue updating your task'
-            
+            return redirect('http://localhost:3000/List')
+       except:
+            return 'there was a problem updating that task'
+
     else:
         return render_template('update.html', task=task)
 

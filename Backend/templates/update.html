@@ -1,0 +1,30 @@
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+<div class="content">
+    <h1 class="light text-center mb-5">Update your task</h1>
+
+
+<form  class="mt-5" action="http://127.0.0.1:5000/update/{{task.id}}" method="POST">
+    <input type="text" name="content" id="content" value="{{task.content}}">
+    <input class="btn btn-dark" type="submit" value="Update">
+</form>
+</div>
+
+
+         
+
+     
+      </div>
+    </div>
+      <div class="col-3"></div>
+      </div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+
+
