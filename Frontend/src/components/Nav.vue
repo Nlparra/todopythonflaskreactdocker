@@ -41,7 +41,7 @@
           <router-link class="nav-link" to="/Contact">Contact</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/List">Todo List</router-link>
+          <router-link class="nav-link" to="/List">Todo List Jinja</router-link>
         </li>
         <!-- THIS IS THE SIGN IN POP UP -->
           <li class="nav-item ml-5">

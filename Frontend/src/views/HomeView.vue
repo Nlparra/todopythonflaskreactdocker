@@ -5,7 +5,8 @@ import Hero from "../components/Elements/Hero.vue"
 
 <template>
 <div class="row">
-<Todo />
+<!-- <Todo /> -->
+<Hero />
 </div>
 </template>
 

@@ -18,11 +18,22 @@ class Todo(db.Model):
     def __repr__(self):
         return '<Task %r' % self.id
 
-    # def __init__(self,id, content, date_created):
-    #     self.id = id
-    #     self.content = content
-    #     self.date_created = date_created
 
+class Jsontodo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    topic = db.Column(db.String(200), nullable=False)
+    # completed = db.Column(db.Integer, default=0)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return '<Task %r' % self.id
+
+    def __init__(self, topic):
+        # self.id = id
+        self.topic = topic
+        # self.date_created = date_created
+
+# Jinja Routes
 
 @app.route('/', methods=['POST', 'GET'])
 @cross_origin()
@@ -68,6 +79,54 @@ def update(id):
 
     else:
         return render_template('update.html', task=task)
+
+# JSON ROUTES
+
+@app.route('/json', methods=['POST', 'GET'])
+@cross_origin()
+def json():
+    if request.method == 'POST':
+        topic = request.get_json()
+        new_topic = Jsontodo(topic=topic)
+
+        try:
+            db.session.add(new_topic)
+            db.session.commit()
+            return redirect('/json')
+        except:
+            return 'there was an issue adding your task'
+
+    else:
+        topic = Jsontodo.query.order_by(Jsontodo.date_created).all()
+        return jsonify(topic=topic)
+
+
+# @app.route('/delete/<int:id>')
+# def delete(id):
+#     task_to_delete = Todo.query.get_or_404(id)
+
+#     try:
+#         db.session.delete(task_to_delete)
+#         db.session.commit()
+#         return redirect('http://localhost:3000/List')
+#     except:
+#         return 'there was a problem deleting that task'
+
+# @app.route('/update/<int:id>', methods=['GET', 'POST'])
+# def update(id):
+#     task = Todo.query.get_or_404(id)
+
+#     if request.method == 'POST':
+#        task.content = request.form['content']
+#        try:
+#             db.session.commit()
+#             return redirect('http://localhost:3000/List')
+#        except:
+#             return 'there was a problem updating that task'
+
+#     else:
+#         return render_template('update.html', task=task)
+
 
 if __name__=="__main__":
     app.run(debug=True)

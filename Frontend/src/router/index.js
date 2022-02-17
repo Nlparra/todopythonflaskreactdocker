@@ -3,6 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import About from "../views/About.vue"
 import Contact from "../views/Contact.vue"
 import List from "../views/ListTodo.vue"
+import Json from "../components/JsonTodo.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: "/list",
       name: "list",
       component: List,
+    },
+    {
+      path: "/json",
+      name: "jsonlist",
+      component: Json,
     }
     // {
     //   path: "/about",
